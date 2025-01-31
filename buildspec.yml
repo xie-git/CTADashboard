@@ -22,9 +22,8 @@ phases:
       - pip install -r requirements.txt
 
       - echo Installing Node.js dependencies...
-      - npm install -g serverless@3  # Consider locking to v3 if needed
+      - npm install -g serverless@4.3.2
       - npm install
-      - serverless login --ci  # Non-interactive login for CI/CD
 
   pre_build:
     commands:
@@ -33,7 +32,7 @@ phases:
       - python --version
       - sls --version
       - echo "Running tests..."
-      - pytest tests/ || echo "Tests completed"
+      - pytest tests/
 
   build:
     commands:
