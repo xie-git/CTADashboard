@@ -8,8 +8,8 @@ cache:
 env:
   variables:
     NODE_ENV: "production"
-    SERVERLESS_ACCESS_TOKEN: "AKpzzi6aflNjvWcpDGjxRvyxyyTq1hz8v5OBCt13ubusf"  # Get from Serverless Dashboard
-    AWS_REGION: "us-east-1"  # Set your preferred region
+    SERVERLESS_ACCESS_TOKEN: "AKpzzi6aflNjvWcpDGjxRvyxyyTq1hz8v5OBCt13ubusf"  # Ideally stored securely
+    AWS_REGION: "us-east-1"
 
 phases:
   install:
@@ -24,7 +24,7 @@ phases:
       - echo Installing Node.js dependencies...
       - npm install -g serverless@4.5.3
       - npm install
-      - sls login --ci --token $SERVERLESS_ACCESS_TOKEN
+      # Removed explicit login since SERVERLESS_ACCESS_TOKEN is already set
 
   pre_build:
     commands:
