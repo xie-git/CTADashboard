@@ -24,7 +24,7 @@ phases:
       - echo Installing Node.js dependencies...
       - npm install -g serverless@4.5.3
       - npm install
-      - echo $SERVERLESS_ACCESS_TOKEN | sls login --ci  # Critical auth step
+      - sls login --ci --token $SERVERLESS_ACCESS_TOKEN
 
   pre_build:
     commands:
