@@ -1,4 +1,5 @@
 import requests
+import os
 from xml.etree import ElementTree as ET
 from datetime import datetime, timedelta
 
@@ -15,8 +16,9 @@ def get_bus_predictions():
     """
 
     API_ENDPOINT = "http://www.ctabustracker.com/bustime/api/v2/getpredictions"
-    API_KEY = "iyNEKq4gFyHRMZkHN9jFVVADG"
-    STOP_ID = "2192"  # e.g., Michigan & Randolph
+    API_KEY = "c81446c36907474c9d56442ed2ea9321"
+    # API_KEY = os.getenv("BUS_API_KEY")
+    STOP_ID = "5004"  # e.g., Michigan & Randolph
 
     params = {
         "key": API_KEY,
