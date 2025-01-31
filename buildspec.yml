@@ -22,8 +22,9 @@ phases:
       - pip install -r requirements.txt
 
       - echo Installing Node.js dependencies...
-      - npm install -g serverless@4.3.2
+      - npm install -g serverless@4.5.3
       - npm install
+      - echo $SERVERLESS_ACCESS_TOKEN | sls login --ci  # Critical auth step
 
   pre_build:
     commands:
