@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>CTA Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap">
+</head>
+<body>
+    <div class="container">
+        <!-- Display the current time at the top -->
+        <h1>CTA Dashboard <small>(as of {{ current_time }})</small></h1>
+
+        <!-- Bus Section -->
+        <div class="mb-5">
+            <h2>Buses at {{ bus_stop_name }}</h2>
+            {% if bus_info %}
+            <table>
+            <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Route</th>
+                  <th>Status</th>
+                  <th>CTA Predicted Time</th>
+                  <th>Actual Arrival Time</th>
+                  <th>Distance</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for item in bus_info %}
+                <tr>
+                  <td>{{ loop.index }}</td>
+                  <td>{{ item.route }}</td>
+                  <td>{{ item.status }}</td>
+                  <td>{{ item.cta_predicted_arrival_time }}</td>
+                  <td>{{ item.actual_time_of_arrival }}</td>
+                  <td>{{ item.distance }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            {% else %}
+            <div class="alert alert-info">No upcoming buses found.</div>
+            {% endif %}
+        </div>
+
+        <!-- Train Section -->
+        <div class="section">
+            <h2>Trains at {{ train_station_name }}</h2>
+            {% if train_info %}
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Route</th>
+                  <th>Destination</th>
+                  <th>Status</th>
+                  <!-- Rename / add columns for the updated keys -->
+                  <th>CTA Predicted Time</th>
+                  <th>Actual Time of Arrival</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for item in train_info %}
+                <tr>
+                  <td>{{ loop.index }}</td>
+                  <td>{{ item.route_name }}</td>
+                  <td>{{ item.destination }}</td>
+                  <td>{{ item.status }}</td>
+                  <!-- Updated keys from train.py -->
+                  <td>{{ item.cta_predicted_arrival_time }}</td>
+                  <td>{{ item.actual_time_of_arrival }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            {% else %}
+            <p>No upcoming trains found.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- SPINNER (Optional) -->
+    <div id="spinner" class="spinner"></div>
+
+    <!-- JavaScript for auto-refresh & spinner (optional) -->
+    <script>
+      let countdown = 15; // e.g. 15 seconds
+      const spinner = document.getElementById('spinner');
+
+      const intervalId = setInterval(() => {
+        countdown--;
+        if (countdown <= 3) {
+          spinner.style.display = 'block';
+        }
+        if (countdown <= 0) {
+          clearInterval(intervalId);
+          window.location.reload();
+        }
+      }, 1000);
+    </script>
+</body>
+</html>

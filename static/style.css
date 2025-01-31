@@ -1,0 +1,106 @@
+/* Example pastel/cute theme. Adjust as you like! */
+
+/* Use a Google Font for a more fun or feminine look:
+   1) In your index.html <head>, add:
+      <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap">
+   2) Then reference it in body or any element:
+*/
+body {
+  /* Soft pink background */
+  background-color: #fff7f9;
+  /* If you imported a Google Font like Poppins: */
+  font-family: "Poppins", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #444; /* Dark gray text */
+}
+
+/* A container to center content and give a white panel effect */
+.container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1rem 2rem;
+  background-color: #ffffff;
+  border: 2px solid #ffe3eb;       /* Light pink border */
+  border-radius: 10px;             /* Slightly rounded corners */
+  box-shadow: 0 2px 6px rgba(213,114,147, 0.15); /* Subtle pinkish shadow */
+}
+
+/* Headings in pinkish tones */
+h1, h2, h3 {
+  color: #d57293; /* Soft rose pink */
+  margin-bottom: 1rem;
+  letter-spacing: 0.5px;
+}
+
+/* Possibly make <h1> a bit more playful or bigger */
+h1 {
+  font-size: 2rem;
+  text-align: center;
+}
+
+/* Optional: a fun style for smaller headings.
+   If you're using a script font, you might do:
+   font-family: "Dancing Script", cursive;
+*/
+
+/* Tables: use pastel pink highlights */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+/* Table border/striping in soft pink */
+table, th, td {
+  border: 1px solid #ffe3eb;
+}
+
+th, td {
+  padding: 0.75rem;
+  text-align: left;
+}
+
+/* Slightly tinted header */
+th {
+  background-color: #ffe3eb;
+  color: #444;
+}
+
+/* Hover effect on rows (if desired) */
+tbody tr:hover {
+  background-color: #ffedf3;
+}
+
+/* Alerts or "No upcoming X found" can have a pinkish background */
+.alert {
+  padding: 1rem;
+  margin: 1rem 0;
+  background-color: #ffedf3;
+  border: 1px solid #ffe3eb;
+  border-radius: 5px;
+  color: #444;
+}
+
+/* Spinner: placed top-center or wherever you want */
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid #ffe3eb;       /* Light pastel border */
+  border-top: 3px solid #d57293;   /* Darker pink for the top segment */
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%); /* Center horizontally */
+  display: none;               /* Hidden until shown by JS */
+  z-index: 9999;
+}
+
+@keyframes spin {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
