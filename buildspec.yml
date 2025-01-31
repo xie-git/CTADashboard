@@ -1,0 +1,44 @@
+version: 0.2
+
+cache:
+  paths:
+    - '/root/.cache/pip/**/*'
+    - 'node_modules/**/*'
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.9          # Use your Python version
+      nodejs: 18           # Use an LTS version like Node.js 18
+    commands:
+      - echo Installing Python dependencies...
+      - pip install --upgrade pip
+      - pip install -r requirements.txt
+
+      - echo Installing Node.js dependencies...
+      - npm install -g serverless      # Install Serverless Framework globally
+      - npm install                   # Install Node.js dependencies if any
+
+  pre_build:
+    commands:
+      - echo Verifying Serverless Framework installation...
+      - sls --version
+
+      - echo Running unit tests...
+      - pip install pytest
+      - pytest
+
+  build:
+    commands:
+      - echo Packaging the serverless application...
+      - sls package --stage dev
+
+  post_build:
+    commands:
+      - echo Deploying the serverless application to AWS...
+      - sls deploy --stage dev
+
+artifacts:
+  files:
+    - '**/*'
+  discard-paths: yes
